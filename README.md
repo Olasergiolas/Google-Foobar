@@ -1,5 +1,5 @@
 # Google-foobar challenges!
-In this repo I'll be uploading the solutions (coded in Python) to all the coding challenges I complete from the [Google-foobar](https://foobar.withgoogle.com/) website.
+In this repo I'll be uploading the solutions (coded in Python) to all the coding challenges I complete from the [Google-foobar's](https://foobar.withgoogle.com/) website.
 
 Current Status
 ==============
