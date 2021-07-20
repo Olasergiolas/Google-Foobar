@@ -9,72 +9,29 @@ def equals(a, b):
     return res
 
 
-def new_generation(arr, objective):
-    new_arr = []
-
-    for generation in arr:
-        p_1 = [generation[0], generation[1] + generation[0]]
-        p_2 = [generation[0] + generation[1], generation[1]]
-
-        if equals(p_1, objective) or equals(p_2, objective):
-            new_arr = 1
-            break
-
-        if p_1[0] + p_1[1] <= objective[0] + objective[1]:
-            new_arr.append(p_1)
-
-        if p_2[0] + p_2[1] <= objective[0] + objective[1]:
-            new_arr.append(p_2)
-
-    return new_arr
-
-
 def solution(x, y):
-    objective = [int(x), int(y)]
-    continuar = True
-    arr = [[1, 2]]
+    steps = 0
+    current = [int(x), int(y)]
 
-    if objective == [1, 1]:
-        steps = 0
-        continuar = False
+    '''if (current[0] % 2 == 0) and (current[1] % 2 == 0):
+        return "impossible"'''
 
-    elif equals([1, 2], objective):
-        steps = 1
-        continuar = False
+    while current != [1, 1]:
+        steps = steps + 1
+        op_1 = [current[0] - current[1], current[1]]
+        op_2 = [current[0], current[1] - current[0]]
+        current = op_1
 
-    else:
-        steps = 2
+        if (op_1[0] <= 1 or op_1[1] <= 1) and (op_2[0] >= 1 and op_2[1] >= 1):
+            current = op_2
 
-    while continuar:
-        arr = new_generation(arr, objective)
-        if arr == 1:
-            continuar = False
-
-        elif len(arr) == 0:
-            return "impossible"
-
-        else:
-            steps = steps + 1
+        '''elif (op_1[0] <= 1 or op_1[1] <= 1) and (op_2[0] <= 1 or op_2[1] <= 1):
+            return "impossible"'''
 
     return str(steps)
 
 
 if __name__ == '__main__':
-    '''arr = [[1,2]]
-    steps = 2
-    continuar = True
-
-    while continuar:
-        arr = new_generation(arr, [5,3])
-        if arr == -1 or len(arr) == 0:
-            continuar = False
-
-        else:
-            steps = steps + 1
-
-        print(arr)
-
-    print(steps)'''
-
-    sol = solution('2', '1')
-    print(sol)
+    a = 4
+    b = 7
+    print(solution(str(a), str(b)))
