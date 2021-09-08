@@ -5,7 +5,7 @@ Current Status
 ==============
 
 Current level: 3
-Challenges left to complete level: 2
+Challenges left to complete level: 1
 
 Level 1: 100% [==========================================]<br>
 Level 2: 100% [==========================================]<br>
