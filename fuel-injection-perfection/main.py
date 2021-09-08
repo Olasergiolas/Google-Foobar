@@ -1,3 +1,5 @@
+import math
+
 # TODO Prettify the code so it doesn't suck
 # TODO Come up with a better algorithm
 
@@ -7,6 +9,9 @@ def solution(n):
 
     # Get to 1 pellet
     while pellets != 1:
+        if pellets & (pellets - 1) == 0:
+            return int(math.sqrt(pellets)) + steps
+
         # Always divide by 2 if even
         while not pellets % 2:
             steps += 1
