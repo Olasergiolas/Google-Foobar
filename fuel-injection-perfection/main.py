@@ -1,7 +1,16 @@
-import math
+def getStepsPowerOfTwo(pellets, steps):
+    # A power of two only has one bit set, so let's flip every bit by substracting one and
+    # perform an AND operation with itself to check if the result is 0
+    if pellets & (pellets - 1) == 0:
+        while pellets != 1:
+            pellets >>= 1
+            steps += 1
 
-# TODO Prettify the code so it doesn't suck
-# TODO Come up with a better algorithm
+        return steps
+
+    else:
+        return -1
+
 
 def solution(n):
     pellets = int(n)
@@ -9,8 +18,9 @@ def solution(n):
 
     # Get to 1 pellet
     while pellets != 1:
-        if pellets & (pellets - 1) == 0:
-            return int(math.sqrt(pellets)) + steps
+        steps_pot = getStepsPowerOfTwo(pellets, steps)
+        if steps_pot != -1:
+            return steps_pot
 
         # Always divide by 2 if even
         while not pellets % 2:
