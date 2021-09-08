@@ -2,42 +2,45 @@
 # TODO Come up with a better algorithm
 
 def solution(n):
-    int_n = int(n)
+    pellets = int(n)
     steps = 0
 
-    while int_n != 1:
-        while not int_n % 2:
-            steps = steps + 1
-            int_n = int_n / 2
-            #print(int_n)
+    # Get to 1 pellet
+    while pellets != 1:
+        # Always divide by 2 if even
+        while not pellets % 2:
+            steps += 1
+            pellets /= 2
 
+        # If not even let's decide whether to increase or reduce by one the n of pellets
         else:
-            if int_n != 1:
-                steps = steps + 1
-                superior = int_n + 1
-                inferior = int_n - 1
+            if pellets != 1:
+                steps += 1
+                sup = pellets + 1
+                prev = pellets - 1
 
-                if superior == 2 or inferior == 2:
-                    int_n = 2
+                # If one of the choices is two, always stick with that
+                if sup == 2 or prev == 2:
+                    pellets = 2
                     continue
 
-                sup_par = (superior/2) % 2
-                inf_par = (inferior/2) % 2
+                even_sup = (sup/2) % 2
+                even_prev = (prev/2) % 2
 
-                if not sup_par and inf_par:
-                    eleccion = superior
+                # Given that both choices will be even, stick with the one that gives
+                # an even result after dividing by 2
+                if not even_sup and even_prev:
+                    choice = sup
 
-                elif not sup_par and not inf_par:
-                    eleccion = min(superior, inferior)
+                elif not even_sup and not even_prev:
+                    choice = min(sup, prev)
 
                 else:
-                    eleccion = inferior
+                    choice = prev
 
-                #print eleccion
-                int_n = eleccion
+                pellets = choice
 
     return steps
-    # print steps
 
 
 if __name__ == '__main__':
